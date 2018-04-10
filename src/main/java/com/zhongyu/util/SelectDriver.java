@@ -24,8 +24,8 @@ public class SelectDriver {
     private final String EDGE = "edge";
     private final String EDGE_DRIVER_FILE = DIR + "/driver/MicrosoftWebDriver.exe";
     private final String browser = YamlUtil.getInstance("config").get("browser");
-    private final String chrome = YamlUtil.getInstance("config").get("webdriver", "chrome");
-    private final String edge = YamlUtil.getInstance("config").get("webdriver", "edge");
+    private final String chrome_url = YamlUtil.getInstance("config").get("webdriver", "chrome");
+    private final String edge_url = YamlUtil.getInstance("config").get("webdriver", "edge");
 
     /**
      * 获取浏览器驱动
@@ -34,15 +34,16 @@ public class SelectDriver {
      */
     public WebDriver getDriver() {
         if (browser.equalsIgnoreCase(EDGE)) {
-            if (!existDriver(EDGE))
-                Spacelift.task(DownloadTool.class).from(edge).to(EDGE_DRIVER_FILE).execute().await();
+            if (!existDriver(EDGE)) {
+                Spacelift.task(DownloadTool.class).from(edge_url).to(EDGE_DRIVER_FILE).execute().await();
+            }
             setEnv(EDGE);
             return new EdgeDriver();
         } else {
-            if (!existDriver(CHROME))
-                Spacelift.task(DownloadTool.class).from(chrome).to(DIR + "/driver/chrome.zip").then(UnzipTool.class).toDir(DIR + "/driver/").execute().await();
+            if (!existDriver(CHROME)) {
+                Spacelift.task(DownloadTool.class).from(chrome_url).to(DIR + "/driver/chrome.zip").then(UnzipTool.class).toDir(DIR + "/driver/").execute().await();
+            }
             setEnv(CHROME);
-
             ChromeDriverService service = new ChromeDriverService.Builder().usingAnyFreePort().build();
             try {
                 service.start();
@@ -84,9 +85,9 @@ public class SelectDriver {
         File driverFile;
         if (!folderName.isDirectory()) folderName.mkdir();
         if (driver.equalsIgnoreCase("edge")) {
-            driverFile = new File(DIR + EDGE_DRIVER_FILE);
+            driverFile = new File(EDGE_DRIVER_FILE);
         } else {
-            driverFile = new File(DIR + CHROME_DRIVER_FILE);
+            driverFile = new File(CHROME_DRIVER_FILE);
         }
         return driverFile.exists();
     }

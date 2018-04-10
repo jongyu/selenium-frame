@@ -1,4 +1,4 @@
-browser: edge
+browser: chrome
 webdriver:
   chrome: https://npm.taobao.org/mirrors/chromedriver/2.37/chromedriver_win32.zip
   edge: https://download.microsoft.com/download/D/4/1/D417998A-58EE-4EFE-A7CC-39EF9E020768/MicrosoftWebDriver.exe
