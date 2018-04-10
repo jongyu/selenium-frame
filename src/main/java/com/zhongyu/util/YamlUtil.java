@@ -3,11 +3,12 @@ package com.zhongyu.util;
 import com.esotericsoftware.yamlbeans.YamlConfig;
 import com.esotericsoftware.yamlbeans.YamlException;
 import com.esotericsoftware.yamlbeans.YamlReader;
-import org.apache.commons.lang3.StringUtils;
 
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
+
+import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
 /**
  * Created by YuChan on 02/26/2017.
@@ -43,13 +44,10 @@ public class YamlUtil {
         try {
             Object object = reader.read();
             Map<String, Object> map = (Map) object;
-            if (StringUtils.isNotEmpty(node)) {
+            if (isNotEmpty(node)) {
                 Map<String, String> nodes = (Map) map.get(node);
-                for (Map.Entry<String, String> entry : nodes.entrySet()) {
-                    if (entry.getKey().equals(key)) {
-                        value = entry.getValue();
-                    }
-                }
+                for (Map.Entry<String, String> entry : nodes.entrySet())
+                    if (entry.getKey().equals(key)) value = entry.getValue();
             } else {
                 return String.valueOf(map.get(key));
             }
@@ -67,6 +65,13 @@ public class YamlUtil {
      */
     public String get(String key) {
         return get(null, key);
+    }
+
+    public static void main(String[] args) {
+        String domain = YamlUtil.getInstance("config").get("domain");
+        String username = YamlUtil.getInstance("element").get("login", "username");
+        System.out.println(domain);
+        System.out.println(username);
     }
 
 }
