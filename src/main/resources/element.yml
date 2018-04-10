@@ -1,2 +1,4 @@
-login:
-  username: zhangsan
+fanyi:
+  row_input: id>baidu_translate_input
+  translate: id>translate-button
+  output: cssSelector>.output-bd
