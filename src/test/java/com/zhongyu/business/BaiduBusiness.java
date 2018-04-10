@@ -14,10 +14,10 @@ public class BaiduBusiness {
         baiduHandle = new BaiduHandle(driver);
     }
 
-    public String translate(String row) {
+    public void translate(String row) {
         baiduHandle.sendKeysContent(row);
         baiduHandle.clickTranslate();
-        return baiduHandle.getResult();
+        baiduHandle.getResult();
     }
 
 }
