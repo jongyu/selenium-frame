@@ -68,7 +68,7 @@ public class YamlUtil {
     }
 
     public static void main(String[] args) {
-        String domain = YamlUtil.getInstance("config").get("domain");
+        String domain = YamlUtil.getInstance("config").get("browser");
         String username = YamlUtil.getInstance("element").get("login", "username");
         System.out.println(domain);
         System.out.println(username);
