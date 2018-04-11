@@ -22,15 +22,16 @@ public class BasePage {
         this.driver = driver;
     }
 
-    /**
-     * 使用YAML定位
-     *
-     * @param node 节点
-     * @param key  键
-     * @return
-     */
-    public By getLocator(String node, String key) {
-        return GetByLocator.getLocator(node, key);
+    public By getLocator(String root) {
+        return GetByLocator.getLocator(root);
+    }
+
+    public By getLocator(String root, String parent) {
+        return GetByLocator.getLocator(root, parent);
+    }
+
+    public By getLocator(String root, String parent, String child) {
+        return GetByLocator.getLocator(root, parent, child);
     }
 
     /**
@@ -154,6 +155,15 @@ public class BasePage {
      */
     public String getTitle() {
         return driver.getTitle();
+    }
+
+    /**
+     * 切换到frame
+     *
+     * @param name
+     */
+    public void frame(String name) {
+        driver.switchToFrame(name);
     }
 
     /**

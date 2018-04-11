@@ -3,12 +3,11 @@ package com.zhongyu.util;
 import com.esotericsoftware.yamlbeans.YamlConfig;
 import com.esotericsoftware.yamlbeans.YamlException;
 import com.esotericsoftware.yamlbeans.YamlReader;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
 /**
  * Created by YuChan on 02/26/2017.
@@ -29,49 +28,50 @@ public class YamlUtil {
         return instance;
     }
 
-    /**
-     * 根据父节点获取子节点
-     *
-     * @param node 父节点
-     * @param key  子节点
-     * @return
-     */
-    public String get(String node, String key) {
-        String value = "未找到元素!";
+    public String get(String root) {
+        return get(root, "", "");
+    }
+
+    public String get(String root, String parent) {
+        return get(root, parent, "");
+    }
+
+    public String get(String root, String parent, String child) {
+        Map<String, Object> yaml = getYaml();
+        if (StringUtils.isNotEmpty(parent) || StringUtils.isNotBlank(parent)) {
+            Map<String, Object> maps = (Map) yaml.get(root);
+            if (StringUtils.isNotEmpty(parent) || StringUtils.isNotBlank(parent)) {
+                for (Map.Entry<String, Object> entry : maps.entrySet()) {
+                    if (entry.getKey().equals(parent)) {
+                        if (StringUtils.isNotEmpty(child) || StringUtils.isNotBlank(child)) {
+                            Map<String, Object> result = (Map) entry.getValue();
+                            return result.get(child).toString();
+                        }
+                        return entry.getValue().toString();
+                    }
+                }
+            }
+        } else {
+            return yaml.get(root).toString();
+        }
+        return null;
+    }
+
+    public Map<String, Object> getYaml() {
         YamlConfig yamlConfig = new YamlConfig();
         yamlConfig.setAllowDuplicates(false);
         YamlReader reader = new YamlReader(new InputStreamReader(Thread.currentThread().getContextClassLoader().getResourceAsStream(this.fileName + ".yml")), yamlConfig);
+        Object object = null;
         try {
-            Object object = reader.read();
-            Map<String, Object> map = (Map) object;
-            if (isNotEmpty(node)) {
-                Map<String, String> nodes = (Map) map.get(node);
-                for (Map.Entry<String, String> entry : nodes.entrySet())
-                    if (entry.getKey().equals(key)) value = entry.getValue();
-            } else {
-                return String.valueOf(map.get(key));
-            }
+            object = reader.read();
         } catch (YamlException e) {
             e.printStackTrace();
         }
-        return value;
-    }
-
-    /**
-     * 获取yaml
-     *
-     * @param key 节点
-     * @return
-     */
-    public String get(String key) {
-        return get(null, key);
+        return (Map<String, Object>) object;
     }
 
     public static void main(String[] args) {
-        String domain = YamlUtil.getInstance("config").get("browser");
-        String username = YamlUtil.getInstance("element").get("login", "username");
-        System.out.println(domain);
-        System.out.println(username);
+        System.out.println(YamlUtil.getInstance("config").get("browser"));
     }
 
 }

@@ -28,7 +28,7 @@ public class BaiduTest {
 
     @AfterClass
     public void tearDown() {
-//        driver.close();
+        driver.close();
     }
 
 }

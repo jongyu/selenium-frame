@@ -7,42 +7,41 @@ import org.openqa.selenium.By;
  */
 public class GetByLocator {
 
-    /**
-     * 使用YAML文件管理定位Element
-     *
-     * @param node 父节点
-     * @param key  子节点
-     * @return
-     */
-    public static By getLocator(String node, String key) {
-        String locator = YamlUtil.getInstance("element").get(node, key);
-        String type = locator.split(">")[0];
-        String value = locator.split(">")[1];
-        return by(type, value);
+    public static By getLocator(String root) {
+        String locator = YamlUtil.getInstance("element").get(root);
+        return by(locator);
     }
 
-    /**
-     * @param type  定位类型
-     * @param value 定位值
-     * @return
-     */
-    private static By by(String type, String value) {
-        if (type.equals("id")) {
-            return By.id(value);
-        } else if (type.equals("name")) {
-            return By.name(value);
-        } else if (type.equals("tagName")) {
-            return By.tagName(value);
-        } else if (type.equals("linkText")) {
-            return By.linkText(value);
-        } else if (type.equals("partialLinkText")) {
-            return By.partialLinkText(value);
-        } else if (type.equals("className")) {
-            return By.className(value);
-        } else if (type.equals("cssSelector")) {
-            return By.cssSelector(value);
-        } else {
-            return By.xpath(value);
+    public static By getLocator(String root, String parent) {
+        String locator = YamlUtil.getInstance("element").get(root, parent);
+        return by(locator);
+    }
+
+    public static By getLocator(String root, String parent, String child) {
+        String locator =YamlUtil.getInstance("element").get(root, parent, child);
+        return by(locator);
+    }
+
+    private static By by(String locator) {
+        String type = locator.split(">")[0];
+        String value = locator.split(">")[1];
+        switch (type) {
+            case "id":
+                return By.id(value);
+            case "name":
+                return By.name(value);
+            case "tagName":
+                return By.tagName(value);
+            case "linkText":
+                return By.linkText(value);
+            case "partialLinkText":
+                return By.partialLinkText(value);
+            case "className":
+                return By.className(value);
+            case "cssSelector":
+                return By.cssSelector(value);
+            default:
+                return By.xpath(value);
         }
     }
 

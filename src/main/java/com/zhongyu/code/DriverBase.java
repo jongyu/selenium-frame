@@ -140,6 +140,13 @@ public class DriverBase {
     }
 
     /**
+     * 切换frame
+     */
+    public void switchToFrame(String name) {
+        driver.switchTo().frame(name);
+    }
+
+    /**
      * 切换Alert
      */
     public void switchAlert() {
