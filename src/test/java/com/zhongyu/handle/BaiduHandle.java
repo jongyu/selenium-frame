@@ -22,8 +22,8 @@ public class BaiduHandle {
         baiduPage.click(baiduPage.getTranslateElement());
     }
 
-    public void getResult() {
-        baiduPage.getText(baiduPage.getResultEmelent());
+    public String getResult() {
+        return baiduPage.getText(baiduPage.getResultElement());
     }
 
 }

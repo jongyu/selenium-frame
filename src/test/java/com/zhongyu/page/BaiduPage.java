@@ -21,7 +21,7 @@ public class BaiduPage extends BasePage {
         return element(getLocator("fanyi", "translate"));
     }
 
-    public WebElement getResultEmelent() {
+    public WebElement getResultElement() {
         return element(getLocator("fanyi", "output"));
     }
 

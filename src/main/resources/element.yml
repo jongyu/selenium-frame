@@ -1,4 +1,4 @@
 fanyi:
   row_input: id>baidu_translate_input
   translate: id>translate-button
-  output: xpath>//*[@id="main-outer"]/div/div/div/div[2]/div[1]/div[2]/div
+  output: xpath>//*[@class="trans-right"]
