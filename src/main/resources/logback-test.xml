@@ -12,7 +12,7 @@
         </layout>
     </appender>
 
-    <logger name="com.yihaojishi" level="info"/>
+    <logger name="com.zhongyu" level="info"/>
 
     <root level="DEBUG">
         <appender-ref ref="STDOUT"/>
