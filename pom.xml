@@ -9,44 +9,41 @@
     <version>1.0</version>
 
     <properties>
-        <selenium.version>3.11.0</selenium.version>
-        <guice.version>4.2.0</guice.version>
-        <reportng.version>1.1.4</reportng.version>
-        <yamlbeans.version>1.13</yamlbeans.version>
-        <arquillian-spacelift.version>1.0.2</arquillian-spacelift.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-server</artifactId>
-            <version>${selenium.version}</version>
+            <version>3.12.0</version>
         </dependency>
         <dependency>
             <groupId>org.arquillian.spacelift</groupId>
             <artifactId>arquillian-spacelift</artifactId>
-            <version>${arquillian-spacelift.version}</version>
+            <version>1.0.2</version>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>[1.2.3,)</version>
+            <version>1.2.3</version>
         </dependency>
         <dependency>
             <groupId>com.esotericsoftware.yamlbeans</groupId>
             <artifactId>yamlbeans</artifactId>
-            <version>${yamlbeans.version}</version>
+            <version>1.13</version>
         </dependency>
         <dependency>
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
-            <version>${guice.version}</version>
+            <version>4.2.0</version>
         </dependency>
         <dependency>
             <groupId>org.uncommons</groupId>
             <artifactId>reportng</artifactId>
-            <version>${reportng.version}</version>
+            <version>1.1.4</version>
             <scope>test</scope>
             <exclusions>
                 <exclusion>
@@ -58,7 +55,7 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>[6.14.2,)</version>
+            <version>6.14.3</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
