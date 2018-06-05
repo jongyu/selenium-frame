@@ -1,6 +1,7 @@
 ### Maven ###
 target/
 driver/
+test-output/
 
 ### STS ###
 .apt_generated
