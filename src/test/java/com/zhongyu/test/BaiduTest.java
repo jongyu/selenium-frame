@@ -20,7 +20,7 @@ public class BaiduTest {
         baiduBusiness = new BaiduBusiness(driver);
     }
 
-    @Test
+    @Test()
     public void translate(){
         driver.get("http://fanyi.baidu.com/#zh/en");
         baiduBusiness.translate("yellow");

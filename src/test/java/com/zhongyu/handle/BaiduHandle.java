@@ -15,7 +15,7 @@ public class BaiduHandle {
     }
 
     public void sendKeysSearchInput(String key) {
-        baiduPage.sendKeys(baiduPage.getInputElement(), key);
+        baiduPage.sendKeys(baiduPage.getSearchInput(), key);
     }
 
     public void sendKeysContent(String row) {
