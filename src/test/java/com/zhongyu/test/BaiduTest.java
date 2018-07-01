@@ -6,6 +6,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 /**
  * Created by YuChan on 02/26/2017.
  */
@@ -20,14 +22,14 @@ public class BaiduTest {
         baiduBusiness = new BaiduBusiness(driver);
     }
 
-    @Test()
-    public void translate(){
+    @Test
+    public void translate() {
         driver.get("http://fanyi.baidu.com/#zh/en");
         baiduBusiness.translate("yellow");
     }
 
     @Test
-    public void searchTest(){
+    public void searchTest() {
         driver.get("https://www.baidu.com");
         baiduBusiness.search("zhongyu.biz");
     }
@@ -35,6 +37,11 @@ public class BaiduTest {
     @AfterClass
     public void tearDown() {
         driver.close();
+        try {
+            Runtime.getRuntime().exec("taskkill /im chromedriver.exe /f");
+        } catch (Exception e) {
+            throw new RuntimeException("杀死ChromeDriver失败");
+        }
     }
 
 }
