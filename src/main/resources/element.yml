@@ -1,3 +1,5 @@
+home:
+  search_input: id>kw
 fanyi:
   row_input: id>baidu_translate_input
   translate: id>translate-button

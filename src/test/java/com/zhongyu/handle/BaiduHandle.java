@@ -14,6 +14,10 @@ public class BaiduHandle {
         baiduPage = new BaiduPage(driver);
     }
 
+    public void sendKeysSearchInput(String key) {
+        baiduPage.sendKeys(baiduPage.getInputElement(), key);
+    }
+
     public void sendKeysContent(String row) {
         baiduPage.sendKeys(baiduPage.getInputElement(), row);
     }

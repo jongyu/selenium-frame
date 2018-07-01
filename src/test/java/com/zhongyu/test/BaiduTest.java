@@ -26,6 +26,12 @@ public class BaiduTest {
         baiduBusiness.translate("yellow");
     }
 
+    @Test
+    public void searchTest(){
+        driver.get("https://www.baidu.com");
+        baiduBusiness.search("zhongyu.biz");
+    }
+
     @AfterClass
     public void tearDown() {
         driver.close();

@@ -14,6 +14,10 @@ public class BaiduBusiness {
         baiduHandle = new BaiduHandle(driver);
     }
 
+    public void search(String key){
+        baiduHandle.sendKeysSearchInput(key);
+    }
+
     public void translate(String row) {
         baiduHandle.sendKeysContent(row);
         baiduHandle.clickTranslate();

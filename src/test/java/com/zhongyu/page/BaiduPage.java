@@ -13,6 +13,10 @@ public class BaiduPage extends BasePage {
         super(driver);
     }
 
+    public WebElement getSearchInput() {
+        return element(getLocator("home","search_input"));
+    }
+
     public WebElement getInputElement() {
         return element(getLocator("fanyi", "row_input"));
     }
